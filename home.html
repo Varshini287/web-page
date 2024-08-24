@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Website</title>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="home.css">
+    </head>
+    <body>
+        <header>
+            <h1>Hexmoto Controls Private Limited</h1>
+            <h5>(R & D CENTER)</h5>
+            (4-A, Belavadi Industrial Area, MYSURU-570018, 
+                India, 
+                info@hexmoto.com)
+
+
+        </header><br>
+        <nav>
+            <b><a href="home.html">Home</a>
+                <a href="product.html">Product</a>
+                <a href="services.html">Consultancy</a></b>
+                <a href="contact.html">Contact</a></b>
+        </nav>
+        <main>
+           
+            <div class="about">
+                <h1>About Us</h1>
+                <p>Welcome to Hexmoto controls!<br>We are at the forefront of engineering innovation. With expertise spanning conceptualization, design, and manufacturing, we are your trusted partner for AC Drives and a diverse range of Power Electronics solutions. Our portfolio encompasses Digital Power Supplies, Automation Products, and Renewable Energy Systems. We are driven by a passion for precision, efficiency, and sustainability, making us a driving force in industries worldwide. Explore our offerings and experience how we redefine possibilities in power electronics, delivering tailored solutions to meet your unique needs. Join us in shaping the future of energy technology.</p>
+            
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <div>
+                <h1>Fault Occurance</h1><br>
+              <input type="file" id="csvFileInput" accept=".csv">
+            <div id="dateTimeAndFault"></div>
+             <canvas id="myChart"></canvas>
+            </div>
+             <script>
+                const dateTimeArray = [];
+                const faultIdsArray = [];
+            
+                document.getElementById('csvFileInput').addEventListener('change', function (e) {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const reader = new FileReader();
+            
+                    reader.onload = function (event) {
+                      const csvData = event.target.result;
+                      const dateTimeAndFaultDiv = document.getElementById('dateTimeAndFault');
+                      const lines = csvData.split('\n');
+            
+                      const dateTimeList = [];
+                      const faultIds = [];
+            
+                      for (const line of lines) {
+                        const columns = line.split(',');
+                        const dateColumn = columns[0];
+                        // Extract date and time using regex
+                        const dateTimeMatch = dateColumn.match(/\d{2}-\d{2}-\d{4} \d{2}:\d{2}/);
+                        if (dateTimeMatch) {
+                          dateTimeList.push(dateTimeMatch[0]);
+                        }
+                      }
+            
+                      for (let i = 0; i < lines.length; i++) {
+                        const line = lines[i];
+                        const startIdx = line.indexOf('{"faultid":'); // Find the starting index of {"faultid":
+                        if (startIdx !== -1) {
+                          const jsonString = line.substring(startIdx);
+                          // Clean up the JSON data
+                          const cleanedJsonString = jsonString.replace(/[^{]*({.*})[^}]*/, "$1");
+                          faultIds.push(cleanedJsonString);
+                        }
+                      }
+            
+                      // Display both fault IDs and corresponding date-time values
+                      const formattedFaultAndDateTime = [];
+                      for (let i = 0; i < faultIds.length; i++) {
+                        try {
+                          const parsedObject = JSON.parse(faultIds[i]);
+                          const faultId = parsedObject.faultid;
+                          formattedFaultAndDateTime.push(`Index ${i} => Date-Time: ${dateTimeList[i]}, Fault ID: ${faultId}`);
+                          if (faultId > 0) {
+                            dateTimeArray.push(dateTimeList[i]); // Add date-time to the array
+                            faultIdsArray.push(faultId);
+                          }
+                        } catch (error) {
+                          const errorMessage = `Error parsing JSON at index ${i}: ${error}`;
+                          console.error(errorMessage);
+            
+                          // Display the problematic JSON data that caused the error
+                          console.error(`Problematic JSON data: ${faultIds[i]}`);
+                        }
+                      }
+            
+                      const formattedOutput = formattedFaultAndDateTime.join('<br>');
+                      dateTimeAndFaultDiv.innerHTML = formattedOutput;
+            
+                      // Call the function to create the chart after processing the CSV data
+                      createChart();
+                    };
+            
+                    reader.readAsText(file);
+                  }
+                });
+            
+                // Function to create the Chart.js line graph
+                function createChart() {
+                  const data = {
+                    labels: dateTimeArray,
+                    datasets: [{
+                      label: 'Dotted Line',
+                      data: faultIdsArray,
+                      borderColor: 'black',
+                      borderWidth: 2,
+                      borderDash: [5, 5], // Set the borderDash property to make it a dotted line
+                      fill: false
+                    }]
+                  };
+            
+                  const ctx = document.getElementById('myChart').getContext('2d');
+            
+                  const myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: data,
+                    options: {
+                      scales: {
+                        x: {
+                          beginAtZero: true,
+                          title: {
+                            display: true,
+                            text: 'Date-Time'
+                            
+                          }
+                        },
+                        y: {
+                          beginAtZero: true,
+                          title: {
+                            display: true,
+                            text: 'Fault_Id'
+                          }
+                        }
+                      }
+                    }
+                  });
+                }
+            
+              </script>
+            
+            
+            </main> 
+            
+            <footer>
+                <p>&copy; 2023 Hexmoto Controls. All rights reserved.</p>
+        </footer>
+    </body>
+    </html>

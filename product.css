@@ -1,0 +1,114 @@
+header{
+    background-image: url(bg1.gif);
+    opacity: 0.9;
+    text-align: center;
+    color: aliceblue;
+}
+
+body{
+    background-image: url(bg3.png);
+}
+nav {
+    background-color: rgb(78, 94, 95);
+    padding: 0.5em;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1em;
+}
+
+.box1 {
+  width: 90%;
+  height: 20%;
+  /* Add a background color to the box */
+  /*background-color:#bdb7b7;*/
+  font-family:serif;
+  color: #fff;
+  /* Add a border with a color, width, and style */
+  border: 2px solid #333;
+  /* Add a box shadow for a 3D effect */
+  box-shadow: 30px 30px 30px rgba(0, 0, 0, 0.4);
+  /* Optional: Center the content horizontally and vertically */
+ 
+  background-color: rgba(54, 65, 118, 0.5); /* 50% transparent red background */
+  position:relative ;
+  /* Absolute positioning */
+  
+    /* Example: Position the box 100 pixels from the top and 50 pixels from the left of its containing block */
+  top: 90px;
+  left: 80px;
+  border-radius: 20px;
+ 
+ 
+  }
+
+  .container {
+    align-content: center;
+    display: flex; /* Use flexbox layout for easy alignment */
+  }
+  a{
+    color: #fff;
+  }
+
+  .box2 {
+    /* Set the size of the box */
+    width:90%;
+    height: 90%;
+    /* Add a background color to the box */
+    background-color: rgba(54, 65, 118, 0.5);
+    /* Add a border with a color, width, and style */
+    border: 2px solid #333;
+    /* Add a box shadow for a 3D effect */
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.2);
+    /* Optional: Center the content horizontally and vertically */
+    color: aliceblue;
+    font-family:serif;
+    margin: 50px;
+    /* Absolute positioning */
+    position: relative;
+      /* Example: Position the box 100 pixels from the top and 50 pixels from the left of its containing block */
+    
+    border-radius: 20px;
+    font-size: large;
+ 
+  }
+  html {
+    scroll-behavior: smooth;
+}
+.box1-1{
+    /* Set the size of the box */
+    width:90%;
+    height: 90%;
+    /* Add a background color to the box */
+    background-color: rgba(54, 65, 118, 0.5);
+    /* Add a border with a color, width, and style */
+    border: 2px solid #333;
+    /* Add a box shadow for a 3D effect */
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.2);
+    /* Optional: Center the content horizontally and vertically */
+    color: aliceblue;
+    font-family:serif;
+    margin: 50px;
+    /* Absolute positioning */
+    position: relative;
+      /* Example: Position the box 100 pixels from the top and 50 pixels from the left of its containing block */
+    left:2%;
+    border-radius: 20px;
+    font-size: large;
+}
+.content {
+  float: left; /* Float the content container to the left */
+  width: 70%;  /* Adjust the width as needed */
+}
+
+.image {
+  float: right; /* Float the image container to the right */
+  width: 30%;  /* Adjust the width as needed */
+}
+img{
+  width: 20%;
+  height: 20%;
+}

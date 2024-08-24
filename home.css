@@ -1,0 +1,84 @@
+header{
+    background-image: url(bg1.gif);
+    opacity: 0.9;
+    text-align: center;
+    color: aliceblue;
+}
+body{
+  background-image: url(bg3.png);
+}
+
+nav {
+    background-color: rgb(78, 94, 95);
+    padding: 0.5em;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1em;
+}
+.about {
+    
+    /* Set the size of the box */
+   font-size: large;
+    width: 90%;
+    height: 20%;
+    /* Add a background color to the box */
+    /*background-color:#bdb7b7;*/
+    font-family:serif;
+    color: #fff;
+    /* Add a border with a color, width, and style */
+    border: 2px solid #333;
+    /* Add a box shadow for a 3D effect */
+    box-shadow: 30px 30px 30px rgba(0, 0, 0, 0.4);
+    /* Optional: Center the content horizontally and vertically */
+   
+    background-color: rgba(54, 65, 118, 0.5); /* 50% transparent red background */
+    position:relative ;
+    /* Absolute positioning */
+    
+      /* Example: Position the box 100 pixels from the top and 50 pixels from the left of its containing block */
+    top: 90px;
+    left: 80px;
+    border-radius: 20px;
+   
+     
+  
+  }
+
+  .about p{
+    font-family:serif;
+    font-size: large;
+
+  }
+  
+
+  form {
+    max-width: 200px;
+    margin: 0 auto;
+}
+label {
+    
+    margin-bottom: 1px;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    padding: 1px;
+    margin-bottom: 1px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  font-size: larger;
+  padding: 10px; /* Increase the padding to increase spacing */
+  text-align: center;
+}
